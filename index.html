@@ -6,14 +6,129 @@
 	<style type="text/css">
 	
 		body{
-			margin: 2em 3em;
+			margin: 3em 8em 5em 8em;
 			padding:0;
+			background-color: rgb(0, 0, 0);
 		}
-		canvas {
+		
+		/*canvas {
 			display:block;
-			margin: 0;
+			margin-top: -7em;
+			border: 1px solid black;
+			
+		}*/
 
+
+		#canvas {
+			display:block;
+			border: 1px solid white;
+			
 		}
+		
+		.griglia {
+			max-width: 100vw;
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+			grid-column-gap: 1em;
+			grid-row-gap: 1em;
+			margin-bottom: 1em;
+		}
+
+		.cella {
+			/*background-color: lightblue;*/
+			/*outline: 1px red solid;*/
+			min-height: 2em;
+			font-family: 'Source Code Pro', monospace;
+			color: white;
+		}
+
+		.doppia {
+			 grid-column: span 2;
+		}
+		.tripla {
+			 grid-column: span 3;
+		}
+		.quadrupla {
+			 grid-column: span 4;
+		}
+
+		.quintupla {
+			 grid-column: span 5;
+		}
+
+		.settupla {
+			 grid-column: span 7;
+		}
+
+
+		.tutta {
+			 grid-column: span 12;
+		}
+		
+		button:hover{
+			background-color: rgb(48, 48, 48);
+			color: rgb(255, 255, 255);
+		}
+
+		button{
+			color: white;
+			font-family: 'Source Code Pro', monospace;
+			width: 15em;
+			height: 2.5em;
+			font-size: 16px;
+			padding: 0;
+			margin-top: 1em;
+			background-color: rgb(0, 0, 0);
+			border: 1px solid rgb(255, 255, 255)
+		}
+
+		textarea{
+			color: white;
+			font-family: 'Source Code Pro', monospace;
+			width: 100%;
+			height: 2.5em;
+			font-size: 16px;
+			padding: 0;
+			background-color: rgb(0, 0, 0);
+			border: 1px solid rgb(255, 255, 255)
+		}
+
+
+		section {
+		max-width: 450px;
+		
+		}
+
+		details {
+		padding-bottom: 15px;
+		display: block;
+		list-style: none;
+		}
+
+		details > summary::-webkit-details-marker {
+		display: none;
+		}
+
+		summary {
+		cursor: pointer;
+		font-weight: 900;
+		font-size: 1.2em;
+		list-style: none;
+		}
+
+		input{
+			color: white;
+			width: 100%;
+			background-color: black; 
+			padding: 0; 
+			border: 1px solid white;
+			size: 10;
+		}
+
+		@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
+
+
 	</style>
 </head>
 
@@ -28,13 +143,79 @@
 	-->
 	<script src="main.js"></script>
 
-	<div>
-		<h3 style="font-family:'Courier New', Courier, monospace; text-align: right; margin-bottom: -1em;">
-			Codifica e decodifica di immagini
-		</h3>
+
+
+
+		<div class="griglia">
+
+		<div class="cella quintupla">
+			<h1 style="margin-top: 0; margin-bottom: 0; font-size: 3.5em; line-height: 1;">Broken data</h1>
+			
+		</div>
+		<div class="cella doppia"></div>
+		<div class="cella quintupla"  style="font-weight: 500">
+		<br><br>
 		
-	</div>
+			<section>
+					  → How to use this tool <br><br>
+					  
+				  
+				   	Use this tool to share encrypted images. <br>
+					Drag your original image into the box in order to encode it. 
+					Save your encoded image and share it (don't miss the password too). 
+					Drag your encrypted image into the box, write the password and discover the original photo.</li>
+
+			  </section>
+		
 
 
+			
+		</div>
+			<div class="cella tutta"></div>
+			
+			<div class="cella settupla">
+				<h3 style="margin-top: 1em; margin-bottom: 0em">
+					Drag your image here
+				</h3>
+			</div>
+
+			<div class="cella quintupla">
+				<h3 style="margin-top: 1em; margin-bottom: 0; ">
+					Key
+				</h3>
+			</div>
+
+			<div class="cella settupla">
+				<div id="canvas"></div>
+			</div>
+				
+
+			<div class="cella quintupla">
+				<div>
+					<textarea type="text" id ="testo"></textarea>
+				</div>
+				
+				
+				<div style="display: flex; justify-content: space-between;">
+					<button id="codifica" type="button">Encode</button>
+					<button id="decodifica" type="button">Decode</button>
+				</div>
+				
+				
+				<button onclick="salvaImm()" >Save</button>
+				
+			</div>
+
+
+
+		</div>
+
+
+
+
+		
+
+
+	
 </body>
 </html>
