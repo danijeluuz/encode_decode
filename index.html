@@ -21,7 +21,7 @@
 
 		#canvas {
 			display:block;
-			border: 1px solid white;
+			
 			
 		}
 		
@@ -37,7 +37,6 @@
 		.cella {
 			/*background-color: lightblue;*/
 			/*outline: 1px red solid;*/
-			min-height: 2em;
 			font-family: 'Source Code Pro', monospace;
 			color: white;
 		}
@@ -64,6 +63,15 @@
 		.tutta {
 			 grid-column: span 12;
 		}
+
+		.nascosto {
+			display: none;
+		}
+			
+		.comparsa:hover + .nascosto {
+			display: block;
+			color: rgb(255, 255, 255);
+		}
 		
 		button:hover{
 			background-color: rgb(48, 48, 48);
@@ -79,18 +87,18 @@
 			padding: 0;
 			margin-top: 1em;
 			background-color: rgb(0, 0, 0);
-			border: 1px solid rgb(255, 255, 255)
+			border: 0.25px solid rgb(255, 255, 255)
 		}
 
 		textarea{
 			color: white;
 			font-family: 'Source Code Pro', monospace;
 			width: 100%;
-			height: 2.5em;
+			height: 10em;
 			font-size: 16px;
 			padding: 0;
 			background-color: rgb(0, 0, 0);
-			border: 1px solid rgb(255, 255, 255)
+			border: 0.25px solid rgb(255, 255, 255)
 		}
 
 
@@ -99,29 +107,12 @@
 		
 		}
 
-		details {
-		padding-bottom: 15px;
-		display: block;
-		list-style: none;
-		}
-
-		details > summary::-webkit-details-marker {
-		display: none;
-		}
-
-		summary {
-		cursor: pointer;
-		font-weight: 900;
-		font-size: 1.2em;
-		list-style: none;
-		}
-
 		input{
 			color: white;
 			width: 100%;
 			background-color: black; 
 			padding: 0; 
-			border: 1px solid white;
+			border: 0.25px solid white;
 			size: 10;
 		}
 
@@ -148,30 +139,48 @@
 
 		<div class="griglia">
 
-		<div class="cella quintupla">
-			<h1 style="margin-top: 0; margin-bottom: 0; font-size: 3.5em; line-height: 1;">Broken data</h1>
-			
+		<div class="cella tutta" style="display: flex; justify-content: space-between;">
+			<h1 style="margin-top: 0; margin-bottom: 0; font-size: 4em; line-height: 1; ">Broken data</h1>
+			<h1 style="font-size: 1em; ">Index</h1>
 		</div>
-		<div class="cella doppia"></div>
+
+		<div class="cella tutta">
+			<hr style="border: 0.25px solid white;">
+		</div>
+
+		<div class="cella settupla"></div>
 		<div class="cella quintupla"  style="font-weight: 500">
-		<br><br>
+
 		
-			<section>
-					  → How to use this tool <br><br>
+			<section style="margin-top: -1em">
+
+					<div class="comparsa" style="cursor: help;">
+						<h3 style="padding: 0; margin: 0; ">
+							<img src="immagini/arrow_forward_white_24dp.svg" style="margin-bottom: -6px;">
+							HOW TO USE THIS TOOL
+						</h3>	
+					</div>
+					
+					
 					  
-				  
-				   	Use this tool to share encrypted images. <br>
-					Drag your original image into the box in order to encode it. 
-					Save your encoded image and share it (don't miss the password too). 
-					Drag your encrypted image into the box, write the password and discover the original photo.</li>
+					<div class="nascosto">
+						<br>
+						Use this tool to share encrypted images. <br>
+						Drag your original image into the box in order to encode it. 
+						Save your encoded image and share it 
+						(don't miss the password too). 
+						Drag your encrypted image into the box, write the password 
+						and discover the original photo.
+					</div>
+				   	
 
 			  </section>
-		
-
-
 			
 		</div>
-			<div class="cella tutta"></div>
+		
+			<div class="cella tutta">
+				<hr style="border: 0.25px solid white; margin-top: -0.5em; margin-bottom: 3vh;">
+			</div>
 			
 			<div class="cella settupla">
 				<h3 style="margin-top: 1em; margin-bottom: 0em">
@@ -186,7 +195,13 @@
 			</div>
 
 			<div class="cella settupla">
-				<div id="canvas"></div>
+				
+				
+				<div id="canvas">
+				<!-- <input type='file' id = "carica" style="border: none;"/> 
+					 img id="myImg" src="#" -->
+				</div> 
+				
 			</div>
 				
 

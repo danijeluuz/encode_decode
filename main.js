@@ -10,8 +10,9 @@ function preload() {
 	immagine = loadImage("immagini/rodcenko.jpg")
 }
 
-
 function setup(){
+
+
 
 	var canvas = createCanvas(immagine.width, immagine.height);
 
@@ -24,6 +25,7 @@ function setup(){
 
 	let lunghezza = Math.floor(random(10, 50))
 	let chiave = []
+	let = chiaveDec = []
 
 	for(let i=0; i<lunghezza; i++){
 		let segno = random(1) < 0.5 ? -1 : 1;
@@ -32,10 +34,7 @@ function setup(){
 		let a =  Math.floor(random(0, dim/2-s))
 		let b = Math.floor(random(dim/2, dim-s))
 		chiave.push(s*segno, a, b)
-		
 	}
-
-
 
 	console.log(chiave)
 
@@ -47,21 +46,31 @@ function setup(){
 		for(let i = 0; i < chiave.length; i+=3){
 			swap(pg, chiave[i], chiave[i+1],  chiave[i+2])
 		}
+		
+		document.getElementById("testo").innerHTML = chiave;
 	});
 	
+	
+	
 	document.getElementById("decodifica").addEventListener("click", function(){
+		
+		//let chiaveDec = document.getElementById("testo").innerHTML;
+		//console.log(chiaveDec)
+
 		for(let i=chiave.length-3; i>=0; i-=3){
 			swap(pg, chiave[i], chiave[i+1],  chiave[i+2])
 		}
-	});
-}
 
+		
+	});
+	
+	
+}
 
 function draw(){
 	image(pg, 0, 0)
-
+	
 }
-
 
 function swapX(pg, larghezza, x1, x2) {
 	let regione1 = pg.get(x1, 0, larghezza, pg.height)
@@ -93,19 +102,3 @@ function salvaFile(){
 	let fileName = "out_" + new Date().getTime()
 	saveCanvas(pg, fileName, 'png')
 }
-
-
-
-/*
-
-function loadCanvas(id) {
-	var canvas = document.createElement('canvas');
-	div = document.getElementById(id); 
-	canvas.id     = "CursorLayer";
-	canvas.width  = immagine.width;
-	canvas.height = immagine.height;
-	canvas.style.zIndex   = 8;
-	canvas.style.position = "absolute";
-	canvas.style.border   = "1px solid";
-	div.appendChild(canvas)
-}*/
