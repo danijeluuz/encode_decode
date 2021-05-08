@@ -6,7 +6,7 @@
 	<style type="text/css">
 	
 		body{
-			margin: 3em 8em 5em 8em;
+			margin: 4em 8em 5em 8em;
 			padding:0;
 			background-color: rgb(0, 0, 0);
 		}
@@ -21,8 +21,10 @@
 
 		#canvas {
 			display:block;
-			
-			
+		}
+
+		#carica {
+			display:block;
 		}
 		
 		.griglia {
@@ -59,7 +61,6 @@
 			 grid-column: span 7;
 		}
 
-
 		.tutta {
 			 grid-column: span 12;
 		}
@@ -81,7 +82,7 @@
 		button{
 			color: white;
 			font-family: 'Source Code Pro', monospace;
-			width: 15em;
+			width: 48%;
 			height: 2.5em;
 			font-size: 16px;
 			padding: 0;
@@ -102,20 +103,6 @@
 		}
 
 
-		section {
-		max-width: 450px;
-		
-		}
-
-		input{
-			color: white;
-			width: 100%;
-			background-color: black; 
-			padding: 0; 
-			border: 0.25px solid white;
-			size: 10;
-		}
-
 		@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
 
@@ -124,6 +111,91 @@
 </head>
 
 <body>
+		<div class="griglia">
+
+		<div class="cella tutta" style="display: flex; justify-content: space-between;">
+			<h1 style="margin-top: 0; margin-bottom: 0; font-size: 4em; line-height: 1; ">Broken data</h1>
+			<h1 style="font-size: 1em; ">Index</h1>
+		</div>
+
+		<div class="cella tutta" style="margin-top: -10px;">
+			<hr style="border: 0.25px solid white;">
+		</div>
+
+		<div class="cella settupla"></div>
+
+		<div class="cella quintupla"  style="font-weight: 500;">
+			<section style="margin-top: -1em">
+
+					<div class="comparsa" style="cursor: help; width: 100%;">
+						<h3 style="padding: 0; margin: 0; ">
+							<img src="immagini/arrow_forward_white_24dp.svg" style="margin-bottom: -6px;">
+							HOW TO USE THIS TOOL
+						</h3>	
+					</div>
+					
+
+					<div class="nascosto" style="width: 100; line-height: 1.25;">
+						<br>
+						Use this tool to share encrypted images. <br>
+						Import your original image into the box in order to encode it.
+						The key in generated randomly by the algorithm but you can also
+						manipulate it or play with its properties and discover interesting outputs.
+						Save your encoded image and share it (don't miss the password too). 
+						Import your encrypted image into the box, write the password 
+						and reveal the original photo.
+					</div>
+			  </section>
+			
+		</div>
+		
+			<div class="cella tutta">
+				<hr style="border: 0.25px solid white; margin-top: -0.5em; margin-bottom: 3vh;">
+			</div>
+			
+			<div class="cella settupla">
+				<!-- <input type='file' accept=".png, .jpg" id = "carica" style="border: none;">  -->
+				<div id= "carica" accept=".png, .jpg"></div> 
+			</div>
+
+			<div class="cella quintupla">
+				<h3 style="margin-top: 1em; margin-bottom: 0; ">
+					Key
+				</h3>
+			</div>
+
+			<div class="cella settupla">
+				<div id="canvas"></div> 
+			</div>
+				
+
+			<div class="cella quintupla">
+				<div>
+					<textarea type="text" id ="testo"></textarea>
+				</div>
+				
+
+				
+
+				<div style="display: flex; justify-content: space-between;">					
+					<button id="randomKey" type="button">Generate Key</button>
+					<button onclick="copiaChiave()" type="button">Copy the key</button>
+				</div>
+
+				<div style="display: flex; justify-content: space-between;">					
+					<button id="codifica" type="button">Encode</button>
+					<button id="decodifica" type="button">Decode</button>
+				</div>
+				
+				<div style="display: flex; justify-content: space-between;">
+					<button onclick="salvaImm()" >Save image</button>
+					
+				</div>
+			</div>
+		</div>
+
+
+
 	<!--
 		embed dello script: copiate l'ultima versione da qui:
 		https://cdnjs.com/libraries/p5.js
@@ -135,102 +207,5 @@
 	<script src="main.js"></script>
 
 
-
-
-		<div class="griglia">
-
-		<div class="cella tutta" style="display: flex; justify-content: space-between;">
-			<h1 style="margin-top: 0; margin-bottom: 0; font-size: 4em; line-height: 1; ">Broken data</h1>
-			<h1 style="font-size: 1em; ">Index</h1>
-		</div>
-
-		<div class="cella tutta">
-			<hr style="border: 0.25px solid white;">
-		</div>
-
-		<div class="cella settupla"></div>
-		<div class="cella quintupla"  style="font-weight: 500">
-
-		
-			<section style="margin-top: -1em">
-
-					<div class="comparsa" style="cursor: help;">
-						<h3 style="padding: 0; margin: 0; ">
-							<img src="immagini/arrow_forward_white_24dp.svg" style="margin-bottom: -6px;">
-							HOW TO USE THIS TOOL
-						</h3>	
-					</div>
-					
-					
-					  
-					<div class="nascosto">
-						<br>
-						Use this tool to share encrypted images. <br>
-						Drag your original image into the box in order to encode it. 
-						Save your encoded image and share it 
-						(don't miss the password too). 
-						Drag your encrypted image into the box, write the password 
-						and discover the original photo.
-					</div>
-				   	
-
-			  </section>
-			
-		</div>
-		
-			<div class="cella tutta">
-				<hr style="border: 0.25px solid white; margin-top: -0.5em; margin-bottom: 3vh;">
-			</div>
-			
-			<div class="cella settupla">
-				<h3 style="margin-top: 1em; margin-bottom: 0em">
-					Drag your image here
-				</h3>
-			</div>
-
-			<div class="cella quintupla">
-				<h3 style="margin-top: 1em; margin-bottom: 0; ">
-					Key
-				</h3>
-			</div>
-
-			<div class="cella settupla">
-				
-				
-				<div id="canvas">
-				<!-- <input type='file' id = "carica" style="border: none;"/> 
-					 img id="myImg" src="#" -->
-				</div> 
-				
-			</div>
-				
-
-			<div class="cella quintupla">
-				<div>
-					<textarea type="text" id ="testo"></textarea>
-				</div>
-				
-				
-				<div style="display: flex; justify-content: space-between;">
-					<button id="codifica" type="button">Encode</button>
-					<button id="decodifica" type="button">Decode</button>
-				</div>
-				
-				
-				<button onclick="salvaImm()" >Save</button>
-				
-			</div>
-
-
-
-		</div>
-
-
-
-
-		
-
-
-	
 </body>
 </html>

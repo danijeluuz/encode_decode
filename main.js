@@ -1,75 +1,77 @@
 let immagine
-let posMouse
 let pg
 let spessore
-
-function preload() {
-
-
-	/*immagine = loadImage("https://picsum.photos/600/400/")*/
-	immagine = loadImage("immagini/rodcenko.jpg")
-}
+let img
 
 function setup(){
 
+	//const canvas = createCanvas(100, 100)
+	//const canvas = 
+	createCanvas(100,100).parent("canvas")
+	input = createFileInput(handleFile)
+	input.parent("carica")
 
-
-	var canvas = createCanvas(immagine.width, immagine.height);
-
-	canvas.width  = immagine.width;
-	canvas.height = immagine.height;
-	canvas.parent('canvas');
-
+	//canvas.parent('canvas');
 	pixelDensity(1);
-	pg = createGraphics(immagine.width, immagine.height)
+	pg = createGraphics(100, 100)
 
-	let lunghezza = Math.floor(random(10, 50))
-	let chiave = []
-	let = chiaveDec = []
 
-	for(let i=0; i<lunghezza; i++){
-		let segno = random(1) < 0.5 ? -1 : 1;
-		let dim = segno == -1 ? immagine.height : immagine.width
-		let s = Math.floor(random(10, dim/4))
-		let a =  Math.floor(random(0, dim/2-s))
-		let b = Math.floor(random(dim/2, dim-s))
-		chiave.push(s*segno, a, b)
-	}
+}
 
+function draw(){
+	image(pg, 0, 0)	
+}
+
+document.getElementById("carica").addEventListener("input", function(e){
+	const file = e.target.value
+	const localFile = file.replace("C:\\fakepath\\", "")
+	loadImage(localFile, function(img){
+		inizializzaImmagine(img)	
+	})
+
+	document.getElementById("testo").value = ''
+});
+
+
+
+
+document.getElementById("codifica").addEventListener("click", function(){
+	const chiave = getKey()
 	console.log(chiave)
+	encode(pg, chiave)	
+});
 
+document.getElementById("decodifica").addEventListener("click", function(){
+	const chiave = getKey()
+	decode(pg, chiave)	
+});
+
+document.getElementById("randomKey").addEventListener("click", function(){
+	const chiave = generaChiaveRandom(pg)
+	document.getElementById("testo").value = chiave.join(' ')	
+});
+
+function decode(pg, chiave) {
+	for(let i=chiave.length-3; i>=0; i-=3){
+		swap(pg, chiave[i], chiave[i+1],  chiave[i+2])
+	}
+}
+
+function encode(pg, chiave) {
+	for(let i = 0; i < chiave.length; i+=3){
+		swap(pg, chiave[i], chiave[i+1],  chiave[i+2])
+	}
+}
+
+function inizializzaImmagine(immagine) {
+
+	// resize canvas
+	resizeCanvas(immagine.width, immagine.height)
+	// resize graphics, copia immagine
 	pg.resizeCanvas(immagine.width, immagine.height);
 	pg.background(255)
 	pg.image(immagine, 0, 0)
 
-	document.getElementById("codifica").addEventListener("click", function(){
-		for(let i = 0; i < chiave.length; i+=3){
-			swap(pg, chiave[i], chiave[i+1],  chiave[i+2])
-		}
-		
-		document.getElementById("testo").innerHTML = chiave;
-	});
-	
-	
-	
-	document.getElementById("decodifica").addEventListener("click", function(){
-		
-		//let chiaveDec = document.getElementById("testo").innerHTML;
-		//console.log(chiaveDec)
-
-		for(let i=chiave.length-3; i>=0; i-=3){
-			swap(pg, chiave[i], chiave[i+1],  chiave[i+2])
-		}
-
-		
-	});
-	
-	
-}
-
-function draw(){
-	image(pg, 0, 0)
-	
 }
 
 function swapX(pg, larghezza, x1, x2) {
@@ -94,6 +96,17 @@ function swap(pg, spessore, a, b) {
 	}
 }
 
+function handleFile(file) {
+	print(file)
+	if (file.type === 'image') {
+		img = createImg(file.data, '')
+		img.hide()
+	} else {
+		img = null
+	}
+}
+
+
 function salvaImm(){
 	salvaFile();
 }
@@ -102,3 +115,31 @@ function salvaFile(){
 	let fileName = "out_" + new Date().getTime()
 	saveCanvas(pg, fileName, 'png')
 }
+
+function copiaChiave() {
+	var copyText = document.getElementById("testo");
+	copyText.select();
+	copyText.setSelectionRange(0, 99999)
+	document.execCommand("copy");
+	alert("Your key is copied: " + copyText.value);
+  }
+
+function getKey() {
+	return document.getElementById("testo").value.trim().split(' ') 
+}
+
+function generaChiaveRandom(pg){
+
+	let lunghezza = Math.floor(random(20, 50))
+	let chiave = []
+
+	for(let i=0; i<lunghezza; i++){
+		let segno = random(1) < 0.5 ? -1 : 1;
+		let dim = segno == -1 ? pg.height : pg.width
+		let s = Math.floor(random(10, dim/4))
+		let a =  Math.floor(random(0, dim/2-s))
+		let b = Math.floor(random(dim/2, dim-s))
+		chiave.push(s*segno, a, b)
+	}
+	return chiave
+  }
