@@ -33,8 +33,6 @@ document.getElementById("carica").addEventListener("input", function(e){
 });
 */
 
-
-
 document.getElementById("codifica").addEventListener("click", function(){
 	const chiave = getKey()
 	console.log(chiave)
@@ -109,7 +107,6 @@ function handleFile(file) {
 		}, 200)
 	}
 }
-
 
 function salvaImm(){
 	salvaFile();
