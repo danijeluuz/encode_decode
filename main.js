@@ -5,13 +5,13 @@ let img
 
 function setup(){
 
-	//const canvas = createCanvas(100, 100)
+	const canvas = createCanvas(100, 100)
 	//const canvas = 
-	createCanvas(100,100).parent("canvas")
-	input = createFileInput(handleFile)
-	input.parent("carica")
+/* 	createCanvas(100,100).parent("canvas") */
+	const input = createFileInput(handleFile)
+	input.parent("file_upload_container") 
 
-	//canvas.parent('canvas');
+	canvas.parent('canvas');
 	pixelDensity(1);
 	pg = createGraphics(100, 100)
 
@@ -21,7 +21,7 @@ function setup(){
 function draw(){
 	image(pg, 0, 0)	
 }
-
+/*
 document.getElementById("carica").addEventListener("input", function(e){
 	const file = e.target.value
 	const localFile = file.replace("C:\\fakepath\\", "")
@@ -31,7 +31,7 @@ document.getElementById("carica").addEventListener("input", function(e){
 
 	document.getElementById("testo").value = ''
 });
-
+*/
 
 
 
@@ -65,6 +65,9 @@ function encode(pg, chiave) {
 
 function inizializzaImmagine(immagine) {
 
+	console.log(immagine)
+	console.log(immagine.width, immagine.height)
+
 	// resize canvas
 	resizeCanvas(immagine.width, immagine.height)
 	// resize graphics, copia immagine
@@ -97,12 +100,13 @@ function swap(pg, spessore, a, b) {
 }
 
 function handleFile(file) {
-	print(file)
 	if (file.type === 'image') {
 		img = createImg(file.data, '')
 		img.hide()
-	} else {
-		img = null
+		setTimeout( () => {
+			inizializzaImmagine(img)
+			img = null
+		}, 200)
 	}
 }
 
