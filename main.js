@@ -10,28 +10,14 @@ function setup(){
 /* 	createCanvas(100,100).parent("canvas") */
 	const input = createFileInput(handleFile)
 	input.parent("file_upload_container") 
-
 	canvas.parent('canvas');
 	pixelDensity(1);
 	pg = createGraphics(100, 100)
-
-
 }
 
 function draw(){
 	image(pg, 0, 0)	
 }
-/*
-document.getElementById("carica").addEventListener("input", function(e){
-	const file = e.target.value
-	const localFile = file.replace("C:\\fakepath\\", "")
-	loadImage(localFile, function(img){
-		inizializzaImmagine(img)	
-	})
-
-	document.getElementById("testo").value = ''
-});
-*/
 
 document.getElementById("codifica").addEventListener("click", function(){
 	const chiave = getKey()
@@ -72,7 +58,6 @@ function inizializzaImmagine(immagine) {
 	pg.resizeCanvas(immagine.width, immagine.height);
 	pg.background(255)
 	pg.image(immagine, 0, 0)
-
 }
 
 function swapX(pg, larghezza, x1, x2) {

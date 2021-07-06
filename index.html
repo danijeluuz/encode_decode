@@ -10,6 +10,7 @@
 			margin: 4em 8em 5em 8em;
 			padding:0;
 			background-color: rgb(0, 0, 0);
+			overflow-y: hidden;
 		}
 		
 		/*canvas {
@@ -18,6 +19,7 @@
 			border: 1px solid black;
 			
 		}*/
+
 
 		#canvas {
 			display:block;
@@ -58,7 +60,18 @@
 		}
 
 		.settupla {
-			 grid-column: span 7;
+			grid-column: span 7;
+			
+		}
+
+		.bottone{
+			margin-top: 20px;
+			width: 75px;
+    		height: 22px;
+   			display: block;
+   			overflow: hidden;
+    		cursor: pointer;
+		
 		}
 
 		.tutta {
@@ -113,7 +126,7 @@
 
 		<div class="cella tutta" style="display: flex; justify-content: space-between;">
 			<h1 style="margin-top: 0; margin-bottom: 0; font-size: 4em; line-height: 1; ">Broken data</h1>
-			<h1 style="font-size: 1em; ">Index</h1>
+			<h1 style="font-size: 1em";> <a href="https://ixd-supsi.github.io/atlantetecnolgico/?" style="text-decoration: none; color: white;">Index</a></h1>
 		</div>
 
 		<div class="cella tutta" style="margin-top: -10px;">
@@ -151,7 +164,7 @@
 				<hr style="border: 0.25px solid white; margin-top: -0.5em; margin-bottom: 3vh;">
 			</div>
 			
-			<div id="file_upload_container" class="cella settupla">
+			<div id="file_upload_container" class="cella settupla bottone">
 				<!-- <input type='file' accept=".png, .jpg>" id = "carica" style="border: none;"> --> 
 				<!-- <div id= "carica" accept=".png, .jpg"></div>  -->
 			</div>
